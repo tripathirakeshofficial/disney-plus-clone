@@ -1,59 +1,23 @@
 import React from "react";
 import styled from "styled-components";
+import { selectMovies } from "../features/movie/movieSlice";
+import { useSelector } from "react-redux";
 
 function Movies() {
+  const movies = useSelector(selectMovies);
+
+  console.log("This is movies ", movies);
+
   return (
     <Container>
       <h4>Recommended for You</h4>
       <Content>
-        <Wrap>
-          <img
-            src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_1_5x/sources/r1/cms/prod/5242/875242-v"
-            alt=""
-          />
-        </Wrap>
-        <Wrap>
-          <img
-            src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_1_5x/sources/r1/cms/prod/6370/936370-v"
-            alt=""
-          />
-        </Wrap>
-        <Wrap>
-          <img
-            src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_1_5x/sources/r1/cms/prod/5667/995667-v"
-            alt=""
-          />
-        </Wrap>
-        <Wrap>
-          <img
-            src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/219/860219-v"
-            alt=""
-          />
-        </Wrap>
-        <Wrap>
-          <img
-            src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_1_5x/sources/r1/cms/prod/1258/911258-v"
-            alt=""
-          />
-        </Wrap>
-        <Wrap>
-          <img
-            src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_1_5x/sources/r1/cms/prod/7698/727698-v"
-            alt=""
-          />
-        </Wrap>
-        <Wrap>
-          <img
-            src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_3x/sources/r1/cms/prod/655/980655-v"
-            alt=""
-          />
-        </Wrap>
-        <Wrap>
-          <img
-            src="https://img1.hotstarext.com/image/upload/f_auto,t_web_vl_1_5x/sources/r1/cms/prod/87/990087-v"
-            alt=""
-          />
-        </Wrap>
+        {movies &&
+          movies.map((movie) => (
+            <Wrap key={movie.id}>
+              <img src={movie.cardImg} alt="" />
+            </Wrap>
+          ))}
       </Content>
     </Container>
   );
